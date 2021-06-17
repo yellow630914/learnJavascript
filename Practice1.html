@@ -5,22 +5,23 @@
     <meta charset="utf-8" />
     <title>practice1</title>
     <style>
-        table, th ,td {
-            border: 1px solid black;
+        table, th ,td {                        /*套用至table,th,td*/
+            border: 1px solid black;           /*線粗1px 雙線 黑*/
         }
-        wordsToMiddle {
+        th.wordsToMiddle {                     /*th可用的class*/
+            margin: auto;                      /*置中*/
         }
     </style>
 </head>
 <body>
     <table style="width:100%">
         <tr>
-            <th class="wordsToMiddle" colspan="3">我的履歷表</th>
+            <th class="wordsToMiddle" colspan="3">我的履歷表</th>     <!--colspan合併橫排-->
         </tr>
         <tr>
             <th class="wordsToMiddle">年齡</th>
             <td width="50%">123</td>
-            <td rowspan="3"><img src="https://truth.bahamut.com.tw/s01/202105/fe60cfa547d2a8976887dc64263f8b1b.JPG"></td>
+            <td rowspan="3"><img src="https://truth.bahamut.com.tw/s01/202105/fe60cfa547d2a8976887dc64263f8b1b.JPG"></td> <!--rowspan合併豎排-->
         </tr>
         <tr>
             <th class="wordsToMiddle">住址</th>

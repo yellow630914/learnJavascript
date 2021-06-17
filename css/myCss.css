@@ -1,0 +1,10 @@
+.bgimage {
+	background-image: url("../img/preview.jpg");
+	background-position: center center;
+	background-size: cover;
+	height: 200px;
+	font-size: 12px;
+}
+div.head{
+padding-top: 70px;
+}
