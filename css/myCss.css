@@ -8,3 +8,11 @@
 div.head{
 padding-top: 70px;
 }
+
+span.greyColor {
+	color:grey;
+}
+
+.active {
+	font-weight: bold;
+}
