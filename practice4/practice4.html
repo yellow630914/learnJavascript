@@ -12,39 +12,39 @@
     <title>practice4</title>
 </head>
 <body>
-    <div class="container  text-center  bg-dark text-white">
+    <div class="container text-center  bg-dark text-white"> 
         <h1 class="display-1">亂數生產</h1>
-    </div>
+    </div><!--標題-->
     <div class="container text-center">
         <img id="p0" />
         <img id="p1" />
         <img id="p2" />
         <img id="p3" />
-    </div>
-    <hr />
+    </div><!--圖片容器-->
+    <hr/>
     <div class="container text-center">
         <button id="btn" class="btn-primary">change</button>
-    </div>
+    </div><!--重骰按鈕-->
 </body>
 </html>
 
 <script>
-    document.onload = rand();
-    document.getElementById("btn").addEventListener("click", rand);
+    document.onload = rand(); //載入網頁時執行rand()
+    document.getElementById("btn").addEventListener("click", rand); //按下id為btn的按鈕時執行rand
 
     function getRandomInt(max) {
         return Math.floor(Math.random() * max);
-    }
+    } //得到0-max之間的整數
 
     function rand() {
         var randomArray = new Array([4]);
 
         for (i = 0; i < 4; i++) {
             randomArray[i] = getRandomInt(10);
-        }
+        } //將隨機數丟入randomArray
         for (i = 0; i < 4; i++) {
             var img = document.getElementById("p" + i);
             img.setAttribute("src", "../img/" + randomArray[i] + ".png");
-        }
-    }
+        } //將randomArray中的數字設定到p0-3
+    } //設定4個隨機數到p0-3
 </script>
