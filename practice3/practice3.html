@@ -12,29 +12,28 @@
     <title>practice3</title>
 </head>
 <body>
-    <table id="nine" class="table table-bordered">
+    <table id="nine" class="table table-bordered"> <!--boostrap的table裝飾-->
         <tr>
             <th colspan="9" style="text-align:center">九九乘法表</th>
         </tr>
 
-    </table>
-    <p id="test"></p>
+    </table><!--table本體-->
 </body>
 </html>
 
 <script>
-    document.body.onload = cross9;
+    document.body.onload = cross9; //當載入網頁時在body執行cross9
 
     function cross9() {
 
-        var nineTable = document.getElementById("nine");
+        var nineTable = document.getElementById("nine"); //將nineTable指為id是nine的元素
 
         for (i = 1; i <= 9; i++) {
-            var tr = '<tr id="crs' + i + '" ></tr>';
-            nineTable.insertAdjacentHTML("beforeend", tr);
+            var tr = '<tr id="crs' + i + '" ></tr>'; //tr為<tr id="crsi"></tr>的字串(i隨for改變
+            nineTable.insertAdjacentHTML("beforeend", tr); //將tr作為html插入nineTable的最後(beforeend
             for (j = 1; j <= 9; j++) {
                 var td = '<td>' + i + '*' + j + ' = ' + i * j + '</td>';
-                var thisTd = document.getElementById("crs" + i);
+                var thisTd = document.getElementById("crs" + i); //將thisTd指為id是crsi的元素(i隨for改變
                 thisTd.insertAdjacentHTML("beforeend", td);
                 console.debug(thisTd);
             };
