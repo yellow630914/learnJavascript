@@ -58,16 +58,16 @@
     } //設定4個隨機數到p0-3
 
     function contrastPass() {
-        var contNum = globalRandom.join("");
-        var inputNum = document.getElementById("passwd").value;
+        var contNum = globalRandom.join("");  //將隨機出來的數字轉為字串
+        var inputNum = document.getElementById("passwd").value; //將表單的值指為inputNum
 
         console.debug(contNum);
         console.debug(inputNum);
-        if (contNum == inputNum) {
+        if (contNum == inputNum) {  //驗證兩值是否一致
             alert("驗證成功");
         }
         else {
             alert("驗證失敗");
         }
-    }
+    }  //驗證
 </script>
