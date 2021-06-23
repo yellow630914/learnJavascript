@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="../css/myCss.css" rel="stylesheet">
+    <title>practice5</title>
+</head>
+<body>
+    <div class="container text-center  bg-dark text-white">
+        <h1 class="display-1">亂數生產</h1>
+    </div><!--標題-->
+    <div class="container text-center">
+        <img id="p0" />
+        <img id="p1" />
+        <img id="p2" />
+        <img id="p3" />
+        <button id="btn" class="btn-primary">change</button><!--重骰按鈕-->
+    </div><!--圖片容器-->
+    <hr />
+    <div class="container text-center">
+        <form>
+            <input type="text" id="passwd" />
+            <button id="contrast" class="btn-primary">驗證</button>
+        </form>
+    </div><!--驗證按鈕-->
+</body>
+</html>
+
+<script>
+    var globalRandom = new Array(4);
+
+    document.onload = rand(); //載入網頁時執行rand()
+    document.getElementById("btn").addEventListener("click", rand); //按下id為btn的按鈕時執行rand
+    document.getElementById("contrast").addEventListener("click", contrastPass); //按下id為btn的按鈕時執行rand
+
+    
+
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    } //得到0-max之間的整數
+
+    function rand() {
+        var randomArray = new Array([4]);
+        for (i = 0; i < 4; i++) {
+            randomArray[i] = getRandomInt(10);
+        } //將隨機數丟入randomArray
+        for (i = 0; i < 4; i++) {
+            var img = document.getElementById("p" + i);
+            img.setAttribute("src", "../img/" + randomArray[i] + ".png");
+        } //將randomArray中的數字設定到p0-3
+        globalRandom = randomArray;
+    } //設定4個隨機數到p0-3
+
+    function contrastPass() {
+        var contNum = globalRandom.join("");
+        var inputNum = document.getElementById("passwd").value;
+
+        console.debug(contNum);
+        console.debug(inputNum);
+        if (contNum == inputNum) {
+            alert("驗證成功");
+        }
+        else {
+            alert("驗證失敗");
+        }
+    }
+</script>
