@@ -20,21 +20,21 @@
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="result" readonly>
                 </div>
-            </div>
+            </div><!--用於顯示表單輸入結果-->
             <!------------------------------------------------------------------------------------>
             <div class="form-group row">
                 <label id="data0" class="col-sm-2 col-form-label text-right active">電子郵件</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="email" placeholder="輸入電子郵件">
                 </div>
-            </div>
+            </div><!--輸入電子郵件-->
             <!------------------------------------------------------------------------------------>
             <div class="form-group row">
                 <label id="data1" class="col-sm-2 col-form-label text-right active">姓名</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="name" placeholder="輸入姓名">
                 </div>
-            </div>
+            </div><!--輸入姓名-->
             <!------------------------------------------------------------------------------------>
             <div class="form-group row">
                 <label id="data2" class="col-sm-2 col-form-label text-right active">性別</label>
@@ -50,14 +50,14 @@
                         </label>
                     </div>
                 </div>
-            </div>
+            </div><!--輸入性別-->
             <!------------------------------------------------------------------------------------>
             <div class="form-group row">
                 <label id="data3" class="col-sm-2 col-form-label text-right active">年齡</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="yearsold" placeholder="輸入年齡">
                 </div>
-            </div>
+            </div><!--輸入年齡-->
             <!------------------------------------------------------------------------------------>
             <div class="form-group row">
                 <label id="data4" class="col-sm-2 col-form-label text-right active">密碼</label>
@@ -70,7 +70,7 @@
                 <div class="col-sm-10">
                     <input type="password" class="form-control" id="checkpwd" placeholder="重新輸入密碼">
                 </div>
-            </div>
+            </div><!--輸入密碼-->
             <!------------------------------------------------------------------------------------>
             <div class="form-group row">
                 <label id="data5" class="col-sm-2 col-form-label text-right active">班級</label>
@@ -82,7 +82,7 @@
                         <option value="1C">1C</option>
                     </select>
                 </div>
-            </div>
+            </div><!--選擇班級-->
             <!------------------------------------------------------------------------------------>
         </form>
     </div>
@@ -90,50 +90,48 @@
 </html>
 
 <script>
-    var result = new Array(6);
-    var resultName = new Array(6)
-    var output = new Array(6)
+    var result = new Array(6);          //用於裝填表單輸入的資料
+    var resultName = new Array(6)       //用於裝填表單的名稱
+    var output = new Array(6)           //用於裝填將表單名稱與資料合成的字串
 
 
-    document.getElementById("dataForm").onchange = collectData;
+    document.getElementById("dataForm").onchange = collectData;  //當表單改動時執行collectData
 
     function collectData() {
-        result[0] = document.getElementById("email").value;
+        result[0] = document.getElementById("email").value;      //將result第0個欄位指定為email欄的字串
         //-------------------------------------------------------------------------------
-        result[1] = document.getElementById("name").value;
+        result[1] = document.getElementById("name").value;       //將result第1個欄位指定為name欄的字串
         //-------------------------------------------------------------------------------
         if (document.getElementById("man").checked) {
             result[2] = document.getElementById("man").value;
         } else {
             if (document.getElementById("woman").checked) {
                 result[2] = document.getElementById("woman").value;
-            } else { result[2] = "" }
-        }
+            } else { result[2] = "" }   //如果還沒選則為空值
+        }                                                         //將result第2個欄位指定為sex欄的選項
         //-------------------------------------------------------------------------------
-        result[3] = document.getElementById("yearsold").value;
+        result[3] = document.getElementById("yearsold").value;    //將result第3個欄位指定為yearsold欄的字串
         //-------------------------------------------------------------------------------
-        if (document.getElementById("pwd").value != "" && document.getElementById("checkpwd").value != "") {
-            if (document.getElementById("pwd").value == document.getElementById("checkpwd").value) {
+        if (document.getElementById("pwd").value != "" && document.getElementById("checkpwd").value != "") {  //此層測定pwd與checkpwd是否都已經輸入了
+            if (document.getElementById("pwd").value == document.getElementById("checkpwd").value) {          //此層測定pwd與checkpwd是否一致
                 result[4] = document.getElementById("checkpwd").value;
             } else {
                 result[4] = "密碼請輸入一致";
-                console.debug("level2");
-            }
+            }     
         } else {
             result[4] = "";
-            console.debug(result[4]);
-        }
+        }                                                         //將result第4個欄位指定為checkpwd的字串
         //-------------------------------------------------------------------------------
-        result[5] = document.getElementById("whatclass").value;
+        result[5] = document.getElementById("whatclass").value;   //將result第5個欄位指定為whatclass的選項
         //-------------------------------------------------------------------------------
         for (i = 0; i <= 5; i++) {
             if (result[i] != "") {
-                resultName[i] = document.getElementById("data" + i).textContent;
-                output[i] = resultName[i] + " :" + result[i];
+                resultName[i] = document.getElementById("data" + i).textContent;  //將已經輸入的欄位名稱填入resultName
+                output[i] = resultName[i] + " :" + result[i];                     //合成resultName與result
             }
         }
         //-------------------------------------------------------------------------------
-        document.getElementById("result").value = output.join("   ");
+        document.getElementById("result").value = output.join("   ");             //將合成結果填入輸入結果欄
         console.debug(output);
     }
 
