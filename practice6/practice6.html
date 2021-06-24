@@ -14,53 +14,53 @@
 <body>
     <div class="container">
         <h1 class="display-1">Form</h1>
-        <form>
+        <form id="dataForm">
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label text-right active">輸入結果</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="result">
+                    <input type="text" class="form-control" id="result" readonly>
                 </div>
             </div>
             <!------------------------------------------------------------------------------------>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label text-right active">電子郵件</label>
+                <label id="data0" class="col-sm-2 col-form-label text-right active">電子郵件</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="email" placeholder="輸入電子郵件">
                 </div>
             </div>
             <!------------------------------------------------------------------------------------>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label text-right active">姓名</label>
+                <label id="data1" class="col-sm-2 col-form-label text-right active">姓名</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="name" placeholder="輸入姓名">
                 </div>
             </div>
             <!------------------------------------------------------------------------------------>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label text-right active">性別</label>
+                <label id="data2" class="col-sm-2 col-form-label text-right active">性別</label>
                 <div class="col-sm-10">
                     <div class="form-check-inline">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="sex">男
+                            <input type="radio" class="form-check-input" id="man" name="sex" value="男">男
                         </label>
                     </div>
                     <div class="form-check-inline">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="sex">女
+                            <input type="radio" class="form-check-input" id="woman" name="sex" value="女">女
                         </label>
                     </div>
                 </div>
             </div>
             <!------------------------------------------------------------------------------------>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label text-right active">年齡</label>
+                <label id="data3" class="col-sm-2 col-form-label text-right active">年齡</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="yearsold" placeholder="輸入年齡">
                 </div>
             </div>
             <!------------------------------------------------------------------------------------>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label text-right active">密碼</label>
+                <label id="data4" class="col-sm-2 col-form-label text-right active">密碼</label>
                 <div class="col-sm-10">
                     <input type="password" class="form-control" id="pwd" placeholder="輸入密碼">
                 </div>
@@ -73,10 +73,10 @@
             </div>
             <!------------------------------------------------------------------------------------>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label text-right active">班級</label>
+                <label id="data5" class="col-sm-2 col-form-label text-right active">班級</label>
                 <div class="col-sm-10">
                     <select class="custom-select" id="whatclass">
-                        <option selected value=null>請選擇班級</option>
+                        <option selected value="">請選擇班級</option>
                         <option value="1A">1A</option>
                         <option value="1B">1B</option>
                         <option value="1C">1C</option>
@@ -88,3 +88,53 @@
     </div>
 </body>
 </html>
+
+<script>
+    var result = new Array(6);
+    var resultName = new Array(6)
+    var output = new Array(6)
+
+
+    document.getElementById("dataForm").onchange = collectData;
+
+    function collectData() {
+        result[0] = document.getElementById("email").value;
+        //-------------------------------------------------------------------------------
+        result[1] = document.getElementById("name").value;
+        //-------------------------------------------------------------------------------
+        if (document.getElementById("man").checked) {
+            result[2] = document.getElementById("man").value;
+        } else {
+            if (document.getElementById("woman").checked) {
+                result[2] = document.getElementById("woman").value;
+            } else { result[2] = "" }
+        }
+        //-------------------------------------------------------------------------------
+        result[3] = document.getElementById("yearsold").value;
+        //-------------------------------------------------------------------------------
+        if (document.getElementById("pwd").value != "" && document.getElementById("checkpwd").value != "") {
+            if (document.getElementById("pwd").value == document.getElementById("checkpwd").value) {
+                result[4] = document.getElementById("checkpwd").value;
+            } else {
+                result[4] = "密碼請輸入一致";
+                console.debug("level2");
+            }
+        } else {
+            result[4] = "";
+            console.debug(result[4]);
+        }
+        //-------------------------------------------------------------------------------
+        result[5] = document.getElementById("whatclass").value;
+        //-------------------------------------------------------------------------------
+        for (i = 0; i <= 5; i++) {
+            if (result[i] != "") {
+                resultName[i] = document.getElementById("data" + i).textContent;
+                output[i] = resultName[i] + " :" + result[i];
+            }
+        }
+        //-------------------------------------------------------------------------------
+        document.getElementById("result").value = output.join("   ");
+        console.debug(output);
+    }
+
+</script>
